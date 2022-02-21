@@ -11,7 +11,7 @@ workflow_dispatch:
     - cron: "47 12 * * *"
 
 jobs:
-  stale:
+   build:
 
     runs-on: ubuntu-latest
     permissions:
