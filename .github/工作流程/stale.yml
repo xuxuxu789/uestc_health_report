@@ -6,6 +6,7 @@
 name: Mark stale issues and pull requests
 
 on:
+workflow_dispatch:
   schedule:
   - cron: '34 10 * * *'
 
@@ -18,11 +19,17 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/stale@v3
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
-        stale-issue-label: 'no-issue-activity'
-        stale-pr-label: 'no-pr-activity'
-run: python -u src/main.py
+    - name: Checkout
+        uses: actions/checkout@v2.4.0
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.3.2
+        with:
+          python-version: "3.10"
+          architecture: "x64"
+
+      
+
+      - name: Run application
+        
+        run: python -u main.py
